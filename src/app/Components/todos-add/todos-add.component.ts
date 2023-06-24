@@ -87,7 +87,7 @@ console.log(a);
         }
       
       });
-      if(this.DialogHeader == 'add'){
+      if(this.operation == 'add'){
         this.apiService.add("todos",todo).subscribe((result : ReturnHelper<Todos>) => {alert(result.data + result.messages[0])})
       }
       else{

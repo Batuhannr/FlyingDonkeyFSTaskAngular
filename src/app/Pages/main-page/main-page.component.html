@@ -1,0 +1,26 @@
+<div style="margin-top: auto;margin-bottom: auto;">
+
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <br><br><br><br><br>
+        </div>
+        <div class="col-lg-12">
+            <button mat-raised-button color="primary" (click)="addNewTodo()">Add New Todo</button>
+            <button *ngIf="!activebutton" mat-raised-button color="primary" style="float: right;" (click)="getdeletedTodos()">Deleted Todos</button>
+            <button *ngIf="activebutton" mat-raised-button color="primary" style="float: right;" (click)="activeTodos()">Active Todos</button>
+<br>
+<br>
+<br>
+        </div>
+        <div class="col-lg-12">
+            <app-grid [kolon]="displayedColumns" [islemvarmi]="true" [classname]="'Todos'"  [dataSource]="Todos"></app-grid>
+
+        </div>
+    </div>
+</div>
+
+
+
+

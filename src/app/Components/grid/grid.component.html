@@ -1,0 +1,69 @@
+<div class="container" >
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field>
+              <mat-label>Filter</mat-label>
+              <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+            </mat-form-field>
+            <mat-form-field style="float: right;">
+              <mat-label>Tags</mat-label>
+              <mat-select (valueChange)="tagFilter(tagSelect.value)"  [(value)]="filterTags" [formControl]="toppings" multiple #tagSelect>
+                <mat-option *ngFor="let topping of toppingList" [value]="topping.id">{{topping.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+              <div *ngFor="let item of kolon">
+                <ng-container  *ngIf="item != opstring" matColumnDef="{{ item }}">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header
+                    >{{ item }}
+                  </mat-header-cell>
+                  <mat-cell [style.background-color]="todos.bgColour"  *matCellDef="let todos">
+                    {{ todos[item] }}
+                  </mat-cell>
+                </ng-container>
+                <ng-container
+                  *ngIf="item == opstring && islemvarmi"
+                  matColumnDef="operations"
+                >
+                  <mat-header-cell *matHeaderCellDef>
+                    Operations
+                  </mat-header-cell>
+                  <mat-cell [style.background-color]="data.bgColour" *matCellDef="let data">
+                    <button mat-icon-button style="visibility: visible;" (click)="detail(data)">
+                        <mat-icon aria-label="label" color="secondary" matTooltip="" 
+                          >visibility
+                        </mat-icon>
+                      </button>
+                    <button *ngIf="hide" id="edit"  mat-icon-button style="visibility: visible;" (click)="updateData(data)">
+                      <mat-icon  aria-label="label" class="accent" matTooltip=""
+                        >edit
+                      </mat-icon>
+                      &nbsp;
+                    </button>
+                    <button *ngIf="hide"  id="delete" style="visibility: visible;" mat-icon-button (click)="remove(data)">
+                      <mat-icon  aria-label="label" color="warn" matTooltip="" 
+                        >delete
+                      </mat-icon>
+                    </button>
+                    
+                  </mat-cell>
+                </ng-container>
+              </div>
+              <mat-header-row *matHeaderRowDef="kolon"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: kolon"></mat-row>
+            </mat-table>
+            <mat-paginator
+              [pageSizeOptions]="[10, 25, 100]"
+              showFirstLastButtons="true"
+              length="10"
+            >
+            </mat-paginator>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
